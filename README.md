@@ -636,7 +636,7 @@ for feature in features_na:
 
 
     
-![png](output_11_0.png)
+![png](output_11_0.jpg)
     
 
 
