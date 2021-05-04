@@ -1109,7 +1109,7 @@ plt.title('House Price vs YearSold')
 
 
     
-![png](output_20_1.png)
+![png](Images/output_20_1.jpg)
     
 
 
