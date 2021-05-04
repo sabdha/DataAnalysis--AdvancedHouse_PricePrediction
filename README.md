@@ -636,109 +636,109 @@ for feature in features_na:
 
 
     
-![png](output_11_0.jpg)
+![png](Images/output_11_0.jpg)
     
 
 
 
     
-![png](output_11_1.png)
+![png](Images/output_11_1.jpg)
     
 
 
 
     
-![png](output_11_2.png)
+![png](Images/output_11_2.jpg)
     
 
 
 
     
-![png](output_11_3.png)
+![png](Images/output_11_3.jpg)
     
 
 
 
     
-![png](output_11_4.png)
+![png](Images/output_11_4.jpg)
     
 
 
 
     
-![png](output_11_5.png)
+![png](Images/output_11_5.jpg)
     
 
 
 
     
-![png](output_11_6.png)
+![png](Images/output_11_6.jpg)
     
 
 
 
     
-![png](output_11_7.png)
+![png](Images/output_11_7.jpg)
     
 
 
 
     
-![png](output_11_8.png)
+![png](Images/output_11_8.jpg)
     
 
 
 
     
-![png](output_11_9.png)
+![png](Images/output_11_9.jpg)
     
 
 
 
     
-![png](output_11_10.png)
+![png](Images/output_11_10.jpg)
     
 
 
 
     
-![png](output_11_11.png)
+![png](Images/output_11_11.jpg)
     
 
 
 
     
-![png](output_11_12.png)
+![png](Images/output_11_12.jpg)
     
 
 
 
     
-![png](output_11_13.png)
+![png](Images/output_11_13.jpg)
     
 
 
 
     
-![png](output_11_14.png)
+![png](Images/output_11_14.jpg)
     
 
 
 
     
-![png](output_11_15.png)
+![png](Images/output_11_15.jpg)
     
 
 
 
     
-![png](output_11_16.png)
+![png](Images/output_11_16.jpg)
     
 
 
 
     
-![png](output_11_17.png)
+![png](Images/output_11_17.jpg)
     
 
 
@@ -1130,19 +1130,19 @@ for feature in year_feature:
 
 
     
-![png](output_22_0.png)
+![png](Images/output_22_0.jpg)
     
 
 
 
     
-![png](output_22_1.png)
+![png](Images/output_22_1.jpg)
     
 
 
 
     
-![png](output_22_2.png)
+![png](Images/output_22_2.jpg)
     
 
 
@@ -1355,103 +1355,103 @@ for feature in discrete_features:
 
 
     
-![png](output_29_0.png)
+![png](Images/output_29_0.jpg)
     
 
 
 
     
-![png](output_29_1.png)
+![png](Images/output_29_1.jpg)
     
 
 
 
     
-![png](output_29_2.png)
+![png](Images/output_29_2.jpg)
     
 
 
 
     
-![png](output_29_3.png)
+![png](Images/output_29_3.jpg)
     
 
 
 
     
-![png](output_29_4.png)
+![png](Images/output_29_4.jpg)
     
 
 
 
     
-![png](output_29_5.png)
+![png](Images/output_29_5.jpg)
     
 
 
 
     
-![png](output_29_6.png)
+![png](Images/output_29_6.jpg)
     
 
 
 
     
-![png](output_29_7.png)
+![png](Images/output_29_7.jpg)
     
 
 
 
     
-![png](output_29_8.png)
+![png](Images/output_29_8.jpg)
     
 
 
 
     
-![png](output_29_9.png)
+![png](Images/output_29_9.jpg)
     
 
 
 
     
-![png](output_29_10.png)
+![png](Images/output_29_10.jpg)
     
 
 
 
     
-![png](output_29_11.png)
+![png](Images/output_29_11.jpg)
     
 
 
 
     
-![png](output_29_12.png)
+![png](Images/output_29_12.jpg)
     
 
 
 
     
-![png](output_29_13.png)
+![png](Images/output_29_13.jpg)
     
 
 
 
     
-![png](output_29_14.png)
+![png](Images/output_29_14.jpg)
     
 
 
 
     
-![png](output_29_15.png)
+![png](Images/output_29_15.jpg)
     
 
 
 
     
-![png](output_29_16.png)
+![png](Images/output_29_16.jpg)
     
 
 
@@ -1481,97 +1481,97 @@ for feature in continuous_features:
 
 
     
-![png](output_32_0.png)
+![png](Images/output_32_0.jpg)
     
 
 
 
     
-![png](output_32_1.png)
+![png](Images/output_32_1.jpg)
     
 
 
 
     
-![png](output_32_2.png)
+![png](Images/output_32_2.jpg)
     
 
 
 
     
-![png](output_32_3.png)
+![png](Images/output_32_3.jpg)
     
 
 
 
     
-![png](output_32_4.png)
+![png](Images/output_32_4.jpg)
     
 
 
 
     
-![png](output_32_5.png)
+![png](Images/output_32_5.jpg)
     
 
 
 
     
-![png](output_32_6.png)
+![png](Images/output_32_6.jpg)
     
 
 
 
     
-![png](output_32_7.png)
+![png](Images/output_32_7.jpg)
     
 
 
 
     
-![png](output_32_8.png)
+![png](Images/output_32_8.jpg)
     
 
 
 
     
-![png](output_32_9.png)
+![png](Images/output_32_9.jpg)
     
 
 
 
     
-![png](output_32_10.png)
+![png](Images/output_32_10.jpg)
     
 
 
 
     
-![png](output_32_11.png)
+![png](Images/output_32_11.jpg)
     
 
 
 
     
-![png](output_32_12.png)
+![png](Images/output_32_12.jpg)
     
 
 
 
     
-![png](output_32_13.png)
+![png](Images/output_32_13.jpg)
     
 
 
 
     
-![png](output_32_14.png)
+![png](Images/output_32_14.jpg)
     
 
 
 
     
-![png](output_32_15.png)
+![png](Images/output_32_15.jpg)
     
 
 
@@ -1609,31 +1609,31 @@ for feature in continuous_features:
 
 
     
-![png](output_35_0.png)
+![png](Images/output_35_0.jpg)
     
 
 
 
     
-![png](output_35_1.png)
+![png](Images/output_35_1.jpg)
     
 
 
 
     
-![png](output_35_2.png)
+![png](Images/output_35_2.jpg)
     
 
 
 
     
-![png](output_35_3.png)
+![png](Images/output_35_3.jpg)
     
 
 
 
     
-![png](output_35_4.png)
+![png](Images/output_35_4.jpg)
     
 
 
@@ -1657,31 +1657,31 @@ for feature in continuous_features:
 
 
     
-![png](output_37_0.png)
+![png](Images/output_37_0.jpg)
     
 
 
 
     
-![png](output_37_1.png)
+![png](Images/output_37_1.jpg)
     
 
 
 
     
-![png](output_37_2.png)
+![png](Images/output_37_2.jpg)
     
 
 
 
     
-![png](output_37_3.png)
+![png](Images/output_37_3.jpg)
     
 
 
 
     
-![png](output_37_4.png)
+![png](Images/output_37_4.jpg)
     
 
 
@@ -1834,259 +1834,259 @@ for feature in categorical_features:
 
 
     
-![png](output_44_0.png)
+![png](Images/output_44_0.jpg)
     
 
 
 
     
-![png](output_44_1.png)
+![png](Images/output_44_1.jpg)
     
 
 
 
     
-![png](output_44_2.png)
+![png](Images/output_44_2.jpg)
     
 
 
 
     
-![png](output_44_3.png)
+![png](Images/output_44_3.jpg)
     
 
 
 
     
-![png](output_44_4.png)
+![png](Images/output_44_4.jpg)
     
 
 
 
     
-![png](output_44_5.png)
+![png](Images/output_44_5.jpg)
     
 
 
 
     
-![png](output_44_6.png)
+![png](Images/output_44_6.jpg)
     
 
 
 
     
-![png](output_44_7.png)
+![png](Images/output_44_7.jpg)
     
 
 
 
     
-![png](output_44_8.png)
+![png](Images/output_44_8.jpg)
     
 
 
 
     
-![png](output_44_9.png)
+![png](Images/output_44_9.jpg)
     
 
 
 
     
-![png](output_44_10.png)
+![png](Images/output_44_10.jpg)
     
 
 
 
     
-![png](output_44_11.png)
+![png](Images/output_44_11.jpg)
     
 
 
 
     
-![png](output_44_12.png)
+![png](Images/output_44_12.jpg)
     
 
 
 
     
-![png](output_44_13.png)
+![png](Images/output_44_13.jpg)
     
 
 
 
     
-![png](output_44_14.png)
+![png](Images/output_44_14.jpg)
     
 
 
 
     
-![png](output_44_15.png)
+![png](Images/output_44_15.jpg)
     
 
 
 
     
-![png](output_44_16.png)
+![png](Images/output_44_16.jpg)
     
 
 
 
     
-![png](output_44_17.png)
+![png](Images/output_44_17.jpg)
     
 
 
 
     
-![png](output_44_18.png)
+![png](Images/output_44_18.jpg)
     
 
 
 
     
-![png](output_44_19.png)
+![png](Images/output_44_19.jpg)
     
 
 
 
     
-![png](output_44_20.png)
+![png](Images/output_44_20.jpg)
     
 
 
 
     
-![png](output_44_21.png)
+![png](Images/output_44_21.jpg)
     
 
 
 
     
-![png](output_44_22.png)
+![png](Images/output_44_22.jpg)
     
 
 
 
     
-![png](output_44_23.png)
+![png](Images/output_44_23.jpg)
     
 
 
 
     
-![png](output_44_24.png)
+![png](Images/output_44_24.jpg)
     
 
 
 
     
-![png](output_44_25.png)
+![png](Images/output_44_25.jpg)
     
 
 
 
     
-![png](output_44_26.png)
+![png](Images/output_44_26.jpg)
     
 
 
 
     
-![png](output_44_27.png)
+![png](Images/output_44_27.jpg)
     
 
 
 
     
-![png](output_44_28.png)
+![png](Images/output_44_28.jpg)
     
 
 
 
     
-![png](output_44_29.png)
+![png](Images/output_44_29.jpg)
     
 
 
 
     
-![png](output_44_30.png)
+![png](Images/output_44_30.jpg)
     
 
 
 
     
-![png](output_44_31.png)
+![png](Images/output_44_31.jpg)
     
 
 
 
     
-![png](output_44_32.png)
+![png](Images/output_44_32.jpg)
     
 
 
 
     
-![png](output_44_33.png)
+![png](Images/output_44_33.jpg)
     
 
 
 
     
-![png](output_44_34.png)
+![png](Images/output_44_34.jpg)
     
 
 
 
     
-![png](output_44_35.png)
+![png](Images/output_44_35.jpg)
     
 
 
 
     
-![png](output_44_36.png)
+![png](Images/output_44_36.jpg)
     
 
 
 
     
-![png](output_44_37.png)
+![png](Images/output_44_37.jpg)
     
 
 
 
     
-![png](output_44_38.png)
+![png](Images/output_44_38.jpg)
     
 
 
 
     
-![png](output_44_39.png)
+![png](Images/output_44_39.jpg)
     
 
 
 
     
-![png](output_44_40.png)
+![png](Images/output_44_40.jpg)
     
 
 
 
     
-![png](output_44_41.png)
+![png](Images/output_44_41.jpg)
     
 
 
 
     
-![png](output_44_42.png)
+![png](Images/output_44_42.jpg)
     
 
 
