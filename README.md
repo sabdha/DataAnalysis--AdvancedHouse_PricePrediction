@@ -1,2 +1,2 @@
 # DataAnalysis--AdvancedHouse_PricePrediction
-[include]:(MachineLearningPipeline_HousePrice.md)
+[include]:(https://github.com/sabdha/DataAnalysis--AdvancedHouse_PricePrediction/edit/main/MachineLearningPipeline_HousePrice.md)
