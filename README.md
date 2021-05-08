@@ -10,8 +10,8 @@
      
 
 ### LifeCycle In A Datascience Project  
-1. ![Data Analysis  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#data-analysis)
-2. Feature Engineering  
+1. [Data Analysis  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#data-analysis)
+2. [Feature Engineering  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#feature-engineering)
 3. Feature Selection  
 4. Model Building  
 5. MOdel Deployment  
@@ -2095,7 +2095,7 @@ for feature in categorical_features:
 
 ```
 
-## Advanced Housing Prices: Feature Engineering  
+## Feature Engineering  
   
 The following will be handled in the Feature Engineering part.
 1. Missing Values  
