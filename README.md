@@ -10,7 +10,7 @@
      
 
 ### LifeCycle In A Datascience Project  
-1. Data Analysis  
+1. ![Data Analysis  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#data-analysis)
 2. Feature Engineering  
 3. Feature Selection  
 4. Model Building  
