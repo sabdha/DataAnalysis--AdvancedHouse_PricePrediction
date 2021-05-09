@@ -12,7 +12,7 @@
 ### LifeCycle In A Datascience Project  
 1. [Data Analysis  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#data-analysis)
 2. [Feature Engineering  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#feature-engineering)
-3. Feature Selection  
+3. [Feature Selection  ](https://github.com/sabdha/MachineLearningPipeline-AdvancedHouse_PricePrediction/blob/main/README.md#feature-selection)
 4. Model Building  
 5. MOdel Deployment  
 
