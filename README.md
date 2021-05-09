@@ -5172,3 +5172,856 @@ data.to_csv('X_train.csv', index=False)
 ```python
 
 ```
+### Feature Selection
+For feature selection, the following libraries will be used.  
+* Lasso  
+* SelectFromModel  
+Lasso regression is a type of linear regression that uses shrinkage. Shrinkage is where data values are shrunk towards a   central point, like the mean. The lasso procedure encourages simple, sparse models (i.e. models with fewer parameters).
+Using the combination of both lasso and selectfrommodel we are going to select the best feature.
+
+
+```python
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+from sklearn.linear_model import Lasso
+from sklearn.feature_selection import SelectFromModel
+
+pd.pandas.set_option('display.max_columns', None)
+    
+```
+
+Next we will read the csv file we have saved after performing the feature engineering.
+
+
+```python
+dataset= pd.read_csv('X_train.csv')
+```
+
+
+```python
+dataset.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>SalePrice</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>LandSlope</th>
+      <th>Neighborhood</th>
+      <th>Condition1</th>
+      <th>Condition2</th>
+      <th>BldgType</th>
+      <th>HouseStyle</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>RoofStyle</th>
+      <th>RoofMatl</th>
+      <th>Exterior1st</th>
+      <th>Exterior2nd</th>
+      <th>MasVnrType</th>
+      <th>MasVnrArea</th>
+      <th>ExterQual</th>
+      <th>ExterCond</th>
+      <th>Foundation</th>
+      <th>BsmtQual</th>
+      <th>BsmtCond</th>
+      <th>BsmtExposure</th>
+      <th>BsmtFinType1</th>
+      <th>BsmtFinSF1</th>
+      <th>BsmtFinType2</th>
+      <th>BsmtFinSF2</th>
+      <th>BsmtUnfSF</th>
+      <th>TotalBsmtSF</th>
+      <th>Heating</th>
+      <th>HeatingQC</th>
+      <th>CentralAir</th>
+      <th>Electrical</th>
+      <th>1stFlrSF</th>
+      <th>2ndFlrSF</th>
+      <th>LowQualFinSF</th>
+      <th>GrLivArea</th>
+      <th>BsmtFullBath</th>
+      <th>BsmtHalfBath</th>
+      <th>FullBath</th>
+      <th>HalfBath</th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>KitchenQual</th>
+      <th>TotRmsAbvGrd</th>
+      <th>Functional</th>
+      <th>Fireplaces</th>
+      <th>FireplaceQu</th>
+      <th>GarageType</th>
+      <th>GarageYrBlt</th>
+      <th>GarageFinish</th>
+      <th>GarageCars</th>
+      <th>GarageArea</th>
+      <th>GarageQual</th>
+      <th>GarageCond</th>
+      <th>PavedDrive</th>
+      <th>WoodDeckSF</th>
+      <th>OpenPorchSF</th>
+      <th>EnclosedPorch</th>
+      <th>3SsnPorch</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>LotFrontagenan</th>
+      <th>MasVnrAreanan</th>
+      <th>GarageYrBltnan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>12.247694</td>
+      <td>0.235294</td>
+      <td>0.75</td>
+      <td>0.418208</td>
+      <td>0.366344</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.636364</td>
+      <td>0.4</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.666667</td>
+      <td>0.500</td>
+      <td>0.949275</td>
+      <td>0.883333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>0.12250</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.25</td>
+      <td>1.000000</td>
+      <td>0.125089</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.064212</td>
+      <td>0.140098</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.356155</td>
+      <td>0.413559</td>
+      <td>0.0</td>
+      <td>0.577712</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>0.375</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.2</td>
+      <td>0.8</td>
+      <td>0.936364</td>
+      <td>0.666667</td>
+      <td>0.50</td>
+      <td>0.386460</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.111517</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.090909</td>
+      <td>0.50</td>
+      <td>0.666667</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>12.109011</td>
+      <td>0.000000</td>
+      <td>0.75</td>
+      <td>0.495064</td>
+      <td>0.391317</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>0.0</td>
+      <td>0.500000</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>0.6</td>
+      <td>0.555556</td>
+      <td>0.875</td>
+      <td>0.753623</td>
+      <td>0.433333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.4</td>
+      <td>0.3</td>
+      <td>0.25</td>
+      <td>0.00000</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>1.00</td>
+      <td>0.666667</td>
+      <td>0.173281</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.121575</td>
+      <td>0.206547</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.503056</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.470245</td>
+      <td>0.000000</td>
+      <td>0.5</td>
+      <td>0.666667</td>
+      <td>0.0</td>
+      <td>0.375</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.6</td>
+      <td>0.8</td>
+      <td>0.690909</td>
+      <td>0.666667</td>
+      <td>0.50</td>
+      <td>0.324401</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.347725</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.363636</td>
+      <td>0.25</td>
+      <td>0.666667</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>12.317167</td>
+      <td>0.235294</td>
+      <td>0.75</td>
+      <td>0.434909</td>
+      <td>0.422359</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.636364</td>
+      <td>0.4</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.666667</td>
+      <td>0.500</td>
+      <td>0.934783</td>
+      <td>0.866667</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>0.10125</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.50</td>
+      <td>1.000000</td>
+      <td>0.086109</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.185788</td>
+      <td>0.150573</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.383441</td>
+      <td>0.419370</td>
+      <td>0.0</td>
+      <td>0.593095</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>0.375</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.6</td>
+      <td>0.8</td>
+      <td>0.918182</td>
+      <td>0.666667</td>
+      <td>0.50</td>
+      <td>0.428773</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.076782</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.727273</td>
+      <td>0.50</td>
+      <td>0.666667</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>11.849398</td>
+      <td>0.294118</td>
+      <td>0.75</td>
+      <td>0.388581</td>
+      <td>0.390295</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>0.727273</td>
+      <td>0.4</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.666667</td>
+      <td>0.500</td>
+      <td>0.311594</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.2</td>
+      <td>0.4</td>
+      <td>0.25</td>
+      <td>0.00000</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.25</td>
+      <td>0.50</td>
+      <td>1.00</td>
+      <td>0.25</td>
+      <td>0.666667</td>
+      <td>0.038271</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.231164</td>
+      <td>0.123732</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.399941</td>
+      <td>0.366102</td>
+      <td>0.0</td>
+      <td>0.579157</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.375</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.416667</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.8</td>
+      <td>0.4</td>
+      <td>0.890909</td>
+      <td>0.333333</td>
+      <td>0.75</td>
+      <td>0.452750</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.063985</td>
+      <td>0.492754</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.090909</td>
+      <td>0.00</td>
+      <td>0.666667</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>12.429216</td>
+      <td>0.235294</td>
+      <td>0.75</td>
+      <td>0.513123</td>
+      <td>0.468761</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>0.4</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.777778</td>
+      <td>0.500</td>
+      <td>0.927536</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>0.21875</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>1.000000</td>
+      <td>0.116052</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.209760</td>
+      <td>0.187398</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.466237</td>
+      <td>0.509927</td>
+      <td>0.0</td>
+      <td>0.666523</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>0.500</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.583333</td>
+      <td>1.0</td>
+      <td>0.333333</td>
+      <td>0.6</td>
+      <td>0.8</td>
+      <td>0.909091</td>
+      <td>0.666667</td>
+      <td>0.75</td>
+      <td>0.589563</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.224037</td>
+      <td>0.153565</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>0.50</td>
+      <td>0.666667</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Next we will drop the target variable 'SalePrice' from the dataset and assign it to y_train.
+
+
+```python
+y_train = dataset[['SalePrice']]
+```
+
+
+```python
+X_train = dataset.drop(['Id', 'SalePrice'], axis = 1)
+```
+
+First specify the Lasso regression model and then select a suitable alpha.
+Bigger the alpha less features will be selected.So we should select a small alpha value.
+Cross validation can be used to choose the value of alpha.
+Then the selectFromModel is will select the features whose coefficients are non-zero.
+
+
+```python
+feature_sel_model = SelectFromModel(Lasso(alpha = 0.005, random_state=0))
+feature_sel_model.fit(X_train, y_train)
+```
+
+
+
+
+    SelectFromModel(estimator=Lasso(alpha=0.005, random_state=0))
+
+
+
+
+```python
+feature_sel_model.get_support()
+```
+
+
+
+
+    array([ True,  True, False, False, False, False, False, False, False,
+           False, False,  True, False, False, False, False,  True, False,
+           False,  True,  True, False, False, False, False, False, False,
+           False, False,  True, False,  True, False, False, False, False,
+           False, False, False,  True,  True, False,  True, False, False,
+            True,  True, False, False, False, False, False,  True, False,
+           False,  True,  True,  True, False,  True,  True, False, False,
+           False,  True, False, False, False, False, False, False, False,
+           False, False, False, False, False, False,  True, False, False,
+           False])
+
+
+
+True indicates that the feature is important and should be used. False indicates the feature is not that important and we can skip that feature.
+
+
+```python
+selected_feat = X_train.columns[(feature_sel_model.get_support())]
+
+#print the total number of features, selected features and number of coefficients shrinked to zero.
+print('total features:{}'.format((X_train.shape[1])))
+print('selected features: {}'.format(len(selected_feat)))
+print('features with coefficient shrank to zero:{}'.format(np.sum(feature_sel_model.estimator_.coef_==0)))
+```
+
+    total features:82
+    selected features: 21
+    features with coefficient shrank to zero:61
+    
+
+
+```python
+selected_feat
+```
+
+
+
+
+    Index(['MSSubClass', 'MSZoning', 'Neighborhood', 'OverallQual', 'YearRemodAdd',
+           'RoofStyle', 'BsmtQual', 'BsmtExposure', 'HeatingQC', 'CentralAir',
+           '1stFlrSF', 'GrLivArea', 'BsmtFullBath', 'KitchenQual', 'Fireplaces',
+           'FireplaceQu', 'GarageType', 'GarageFinish', 'GarageCars', 'PavedDrive',
+           'SaleCondition'],
+          dtype='object')
+
+
+
+
+```python
+X_train = X_train[selected_feat]
+```
+
+
+```python
+X_train.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>Neighborhood</th>
+      <th>OverallQual</th>
+      <th>YearRemodAdd</th>
+      <th>RoofStyle</th>
+      <th>BsmtQual</th>
+      <th>BsmtExposure</th>
+      <th>HeatingQC</th>
+      <th>CentralAir</th>
+      <th>1stFlrSF</th>
+      <th>GrLivArea</th>
+      <th>BsmtFullBath</th>
+      <th>KitchenQual</th>
+      <th>Fireplaces</th>
+      <th>FireplaceQu</th>
+      <th>GarageType</th>
+      <th>GarageFinish</th>
+      <th>GarageCars</th>
+      <th>PavedDrive</th>
+      <th>SaleCondition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.235294</td>
+      <td>0.75</td>
+      <td>0.636364</td>
+      <td>0.666667</td>
+      <td>0.883333</td>
+      <td>0.0</td>
+      <td>0.75</td>
+      <td>0.25</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>0.356155</td>
+      <td>0.577712</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.2</td>
+      <td>0.8</td>
+      <td>0.666667</td>
+      <td>0.50</td>
+      <td>1.0</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000000</td>
+      <td>0.75</td>
+      <td>0.500000</td>
+      <td>0.555556</td>
+      <td>0.433333</td>
+      <td>0.0</td>
+      <td>0.75</td>
+      <td>1.00</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>0.503056</td>
+      <td>0.470245</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.6</td>
+      <td>0.8</td>
+      <td>0.666667</td>
+      <td>0.50</td>
+      <td>1.0</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.235294</td>
+      <td>0.75</td>
+      <td>0.636364</td>
+      <td>0.666667</td>
+      <td>0.866667</td>
+      <td>0.0</td>
+      <td>0.75</td>
+      <td>0.50</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>0.383441</td>
+      <td>0.593095</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.6</td>
+      <td>0.8</td>
+      <td>0.666667</td>
+      <td>0.50</td>
+      <td>1.0</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.294118</td>
+      <td>0.75</td>
+      <td>0.727273</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.399941</td>
+      <td>0.579157</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.8</td>
+      <td>0.4</td>
+      <td>0.333333</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.235294</td>
+      <td>0.75</td>
+      <td>1.000000</td>
+      <td>0.777778</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>1.00</td>
+      <td>1.0</td>
+      <td>0.466237</td>
+      <td>0.666523</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.6</td>
+      <td>0.8</td>
+      <td>0.666667</td>
+      <td>0.75</td>
+      <td>1.0</td>
+      <td>0.75</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+
+```
